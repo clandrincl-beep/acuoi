@@ -1,1 +1,363 @@
-<!DOCTYPE html><html><head><title>Test</title></head><body><h1>It works!</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acuoi - The marketplace for private startup shares. Buy and sell equity in private companies with confidence.">
+    <title>Acuoi | Private Startup Shares Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--primary); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navigation */
+        nav { background: white; padding: 20px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; font-weight: 700; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
+        .nav-cta { background: var(--secondary); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+        .nav-cta:hover { background: var(--accent); }
+        
+        /* Hero */
+        .hero { padding: 160px 0 100px; background: linear-gradient(135deg, var(--light) 0%, #e0e7ff 100%); }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: var(--primary); }
+        .hero p { font-size: 20px; color: var(--gray); margin-bottom: 32px; }
+        .hero-cta { display: inline-flex; gap: 16px; }
+        .btn-primary { background: var(--secondary); color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 18px; transition: all 0.3s; }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+        .btn-secondary { background: white; color: var(--secondary); padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 18px; border: 2px solid var(--secondary); transition: all 0.3s; }
+        .btn-secondary:hover { background: var(--light); }
+        .hero-visual { background: var(--primary); border-radius: 16px; padding: 40px; color: white; }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .stat { text-align: center; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 12px; }
+        .stat-value { font-size: 36px; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+        
+        /* How it Works */
+        .how-it-works { padding: 100px 0; background: white; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 40px; font-weight: 700; margin-bottom: 16px; }
+        .section-title p { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; }
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+        .step { text-align: center; padding: 32px 24px; background: var(--light); border-radius: 16px; transition: transform 0.3s; }
+        .step:hover { transform: translateY(-8px); }
+        .step-icon { width: 72px; height: 72px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .step-icon i { font-size: 28px; color: white; }
+        .step-number { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+        .step h3 { font-size: 20px; margin-bottom: 12px; }
+        .step p { font-size: 15px; color: var(--gray); }
+        
+        /* Features */
+        .features { padding: 100px 0; background: var(--primary); color: white; }
+        .features .section-title h2 { color: white; }
+        .features .section-title p { color: #94a3b8; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .feature { padding: 32px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+        .feature i { font-size: 32px; color: var(--accent); margin-bottom: 20px; }
+        .feature h3 { font-size: 22px; margin-bottom: 12px; }
+        .feature p { color: #94a3b8; font-size: 15px; }
+        
+        /* CTA Section */
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, var(--secondary) 0%, #1e3a8a 100%); text-align: center; color: white; }
+        .cta-section h2 { font-size: 44px; font-weight: 700; margin-bottom: 20px; }
+        .cta-section p { font-size: 20px; opacity: 0.9; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        /* Contact Form */
+        .contact { padding: 100px 0; background: var(--light); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .contact-info h2 { font-size: 36px; margin-bottom: 20px; }
+        .contact-info p { color: var(--gray); margin-bottom: 32px; font-size: 18px; }
+        .contact-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .contact-item i { width: 48px; height: 48px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .form-card { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-group .error { border-color: #ef4444; }
+        .error-message { color: #ef4444; font-size: 13px; margin-top: 6px; display: none; }
+        .btn-submit { width: 100%; background: var(--secondary); color: white; padding: 16px; border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        .btn-submit:hover { background: var(--accent); }
+        .success-message { background: var(--success); color: white; padding: 16px; border-radius: 8px; text-align: center; display: none; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: white; padding: 60px 0 30px; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-logo { font-size: 24px; font-weight: 700; }
+        .footer-links { display: flex; gap: 32px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-bottom { text-align: center; padding-top: 30px; color: #64748b; font-size: 14px; }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content, .contact-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 40px; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: 1fr; }
+            .hero-visual { order: -1; }
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 32px; }
+            .steps { grid-template-columns: 1fr; }
+            .hero-cta { flex-direction: column; }
+            .footer-content { flex-direction: column; gap: 24px; text-align: center; }
+            .stat-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">Acuoi</a>
+            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <h1>Unlock Access to Private Startup Equity</h1>
+                    <p>The trusted marketplace for buying and selling shares in private companies. Diversify your portfolio with pre-IPO opportunities.</p>
+                    <div class="hero-cta">
+                        <a href="#waitlist" class="btn-primary">Get Early Access</a>
+                        <a href="#how-it-works" class="btn-secondary">How It Works</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <div class="stat-value">$2.4B+</div>
+                            <div class="stat-label">Transaction Volume</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-label">Private Companies</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">12K+</div>
+                            <div class="stat-label">Verified Investors</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Start trading private shares in four simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="step-number">Step 1</div>
+                    <h3>Get Verified</h3>
+                    <p>Complete our accreditation process to access the marketplace</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <div class="step-number">Step 2</div>
+                    <h3>Browse Listings</h3>
+                    <p>Explore available shares from hundreds of private companies</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="step-number">Step 3</div>
+                    <h3>Make an Offer</h3>
+                    <p>Submit your bid or ask, and negotiate with counterparties</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="step-number">Step 4</div>
+                    <h3>Close Securely</h3>
+                    <p>We handle compliance, escrow, and transfer documentation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Acuoi</h2>
+                <p>Built for serious investors who demand more</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Verified Transactions</h3>
+                    <p>Every listing is vetted. Every seller is verified. Trade with confidence knowing all parties are authenticated.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Instant Liquidity</h3>
+                    <p>No more waiting for an IPO. Access your capital when you need it through our active secondary market.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure Escrow</h3>
+                    <p>Funds are held safely until all conditions are met. Our escrow system protects both buyers and sellers.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Price Discovery</h3>
+                    <p>Real-time market data and historical pricing help you make informed investment decisions.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>Compliance Handled</h3>
+                    <p>We manage ROFR, company approvals, and all legal documentation so you can focus on investing.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Expert Support</h3>
+                    <p>Our team of specialists guides you through every transaction from start to finish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="waitlist">
+        <div class="container">
+            <h2>Join the Future of Private Markets</h2>
+            <p>Be among the first to access exclusive pre-IPO investment opportunities</p>
+            <a href="#contact" class="btn-primary" style="background: white; color: var(--secondary);">Request Early Access</a>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Ready to start trading private shares? Have questions about our platform? We're here to help.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Response Time</strong>
+                            <p style="margin:0; color: var(--gray);">Within 24 hours</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <strong>Global Access</strong>
+                            <p style="margin:0; color: var(--gray);">Serving investors worldwide</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="error-message" id="nameError">Please enter your name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="error-message" id="emailError">Please enter a valid email</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                            <div class="error-message" id="messageError">Please enter your message</div>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                        <div class="success-message" id="successMessage">Thank you! We'll be in touch soon.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Acuoi</div>
+                <div class="footer-links">
+                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/terms-of-use">Terms of Use</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Acuoi. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
+            
+            // Validate name
+            if (name.value.trim() === '') {
+                name.classList.add('error');
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.classList.add('error');
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate message
+            if (message.value.trim() === '') {
+                message.classList.add('error');
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
