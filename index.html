@@ -3,124 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Acuoi - The marketplace for private startup shares. Buy and sell equity in private companies with confidence.">
-    <title>Acuoi | Private Startup Shares Marketplace</title>
+    <meta name="description" content="Acuoi - Modern payment processing built for the cannabis industry. Compliant, reliable, and fast payments for dispensaries, cultivators, and delivery services.">
+    <title>Acuoi | Cannabis Payment Processing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #0f172a;
-            --secondary: #1e40af;
-            --accent: #3b82f6;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --success: #10b981;
+            --primary: #0d1117;
+            --secondary: #238636;
+            --accent: #2ea043;
+            --light: #f6f8fa;
+            --gray: #6e7681;
+            --dark-gray: #30363d;
+            --success: #238636;
+            --gradient-start: #238636;
+            --gradient-end: #2ea043;
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--primary); line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
         /* Navigation */
-        nav { background: white; padding: 20px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        nav { background: white; padding: 16px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 28px; font-weight: 700; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
-        .nav-cta { background: var(--secondary); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
-        .nav-cta:hover { background: var(--accent); }
+        .logo { font-size: 26px; font-weight: 700; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--secondary); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--gray); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta { background: var(--secondary); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-cta:hover { background: var(--accent); color: white; }
         
         /* Hero */
-        .hero { padding: 160px 0 100px; background: linear-gradient(135deg, var(--light) 0%, #e0e7ff 100%); }
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: var(--primary); }
-        .hero p { font-size: 20px; color: var(--gray); margin-bottom: 32px; }
-        .hero-cta { display: inline-flex; gap: 16px; }
-        .btn-primary { background: var(--secondary); color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 18px; transition: all 0.3s; }
-        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
-        .btn-secondary { background: white; color: var(--secondary); padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 18px; border: 2px solid var(--secondary); transition: all 0.3s; }
-        .btn-secondary:hover { background: var(--light); }
-        .hero-visual { background: var(--primary); border-radius: 16px; padding: 40px; color: white; }
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .stat { text-align: center; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 12px; }
-        .stat-value { font-size: 36px; font-weight: 700; color: var(--accent); }
-        .stat-label { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+        .hero { padding: 160px 0 120px; background: linear-gradient(180deg, #ffffff 0%, var(--light) 100%); }
+        .hero-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(35, 134, 54, 0.1); color: var(--secondary); padding: 8px 16px; border-radius: 24px; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+        .hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: var(--primary); letter-spacing: -1px; }
+        .hero h1 span { color: var(--secondary); }
+        .hero p { font-size: 20px; color: var(--gray); margin-bottom: 40px; max-width: 540px; }
+        .hero-cta { display: flex; gap: 16px; }
+        .btn-primary { background: var(--secondary); color: white; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3); }
+        .btn-secondary { background: white; color: var(--primary); padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; border: 1px solid #d1d5da; transition: all 0.3s; }
+        .btn-secondary:hover { border-color: var(--primary); }
         
-        /* How it Works */
-        .how-it-works { padding: 100px 0; background: white; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 40px; font-weight: 700; margin-bottom: 16px; }
-        .section-title p { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; }
-        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-        .step { text-align: center; padding: 32px 24px; background: var(--light); border-radius: 16px; transition: transform 0.3s; }
-        .step:hover { transform: translateY(-8px); }
-        .step-icon { width: 72px; height: 72px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
-        .step-icon i { font-size: 28px; color: white; }
-        .step-number { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
-        .step h3 { font-size: 20px; margin-bottom: 12px; }
-        .step p { font-size: 15px; color: var(--gray); }
+        .hero-stats { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #e1e4e8; }
+        .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .stat { text-align: center; padding: 20px; }
+        .stat:not(:last-child) { border-right: 1px solid #e1e4e8; }
+        .stat-row .stat:nth-child(odd):not(:first-child) { border-right: none; }
+        .stat-row .stat:nth-child(n+3) { border-top: 1px solid #e1e4e8; padding-top: 32px; }
+        .stat-value { font-size: 40px; font-weight: 700; color: var(--secondary); }
+        .stat-label { font-size: 14px; color: var(--gray); margin-top: 4px; font-weight: 500; }
+        
+        /* Trusted By */
+        .trusted { padding: 60px 0; background: white; border-bottom: 1px solid #e1e4e8; }
+        .trusted-text { text-align: center; color: var(--gray); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+        .trusted-logos { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .trusted-item { color: var(--dark-gray); font-size: 20px; font-weight: 700; opacity: 0.6; }
+        
+        /* Pain Points */
+        .pain-points { padding: 100px 0; background: var(--primary); color: white; }
+        .pain-points .section-title h2 { color: white; }
+        .pain-points .section-title p { color: rgba(255,255,255,0.7); }
+        .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+        .pain-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 32px; }
+        .pain-card i { font-size: 24px; color: #f85149; margin-bottom: 16px; }
+        .pain-card h3 { font-size: 18px; margin-bottom: 12px; }
+        .pain-card p { color: rgba(255,255,255,0.6); font-size: 15px; }
+        .solution-banner { background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); border-radius: 16px; padding: 48px; text-align: center; }
+        .solution-banner h3 { font-size: 28px; margin-bottom: 12px; }
+        .solution-banner p { font-size: 18px; opacity: 0.9; }
         
         /* Features */
-        .features { padding: 100px 0; background: var(--primary); color: white; }
-        .features .section-title h2 { color: white; }
-        .features .section-title p { color: #94a3b8; }
+        .features { padding: 100px 0; background: white; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 40px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .section-title p { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; }
         .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .feature { padding: 32px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
-        .feature i { font-size: 32px; color: var(--accent); margin-bottom: 20px; }
-        .feature h3 { font-size: 22px; margin-bottom: 12px; }
-        .feature p { color: #94a3b8; font-size: 15px; }
+        .feature { padding: 40px 32px; background: var(--light); border-radius: 12px; transition: all 0.3s; border: 1px solid transparent; }
+        .feature:hover { border-color: var(--secondary); transform: translateY(-4px); }
+        .feature-icon { width: 56px; height: 56px; background: rgba(35, 134, 54, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .feature-icon i { font-size: 24px; color: var(--secondary); }
+        .feature h3 { font-size: 20px; margin-bottom: 12px; color: var(--primary); }
+        .feature p { color: var(--gray); font-size: 15px; line-height: 1.7; }
+        
+        /* How It Works */
+        .how-it-works { padding: 100px 0; background: var(--light); }
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+        .steps::before { content: ''; position: absolute; top: 40px; left: 12.5%; right: 12.5%; height: 2px; background: #d1d5da; z-index: 0; }
+        .step { text-align: center; position: relative; z-index: 1; }
+        .step-number { width: 80px; height: 80px; background: white; border: 2px solid var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; font-weight: 700; color: var(--secondary); }
+        .step h3 { font-size: 18px; margin-bottom: 12px; color: var(--primary); }
+        .step p { font-size: 14px; color: var(--gray); padding: 0 16px; }
         
         /* CTA Section */
-        .cta-section { padding: 100px 0; background: linear-gradient(135deg, var(--secondary) 0%, #1e3a8a 100%); text-align: center; color: white; }
-        .cta-section h2 { font-size: 44px; font-weight: 700; margin-bottom: 20px; }
-        .cta-section p { font-size: 20px; opacity: 0.9; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, var(--primary) 0%, #161b22 100%); text-align: center; color: white; }
+        .cta-section h2 { font-size: 44px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .cta-section p { font-size: 20px; opacity: 0.8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
         
         /* Contact Form */
-        .contact { padding: 100px 0; background: var(--light); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .contact-info h2 { font-size: 36px; margin-bottom: 20px; }
-        .contact-info p { color: var(--gray); margin-bottom: 32px; font-size: 18px; }
-        .contact-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-        .contact-item i { width: 48px; height: 48px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .form-card { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .form-group .error { border-color: #ef4444; }
-        .error-message { color: #ef4444; font-size: 13px; margin-top: 6px; display: none; }
-        .btn-submit { width: 100%; background: var(--secondary); color: white; padding: 16px; border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        .contact { padding: 100px 0; background: white; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .contact-info h2 { font-size: 36px; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .contact-info > p { color: var(--gray); margin-bottom: 40px; font-size: 18px; }
+        .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+        .contact-item-icon { width: 48px; height: 48px; background: rgba(35, 134, 54, 0.1); color: var(--secondary); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .contact-item-icon i { font-size: 18px; }
+        .contact-item-text strong { display: block; margin-bottom: 4px; }
+        .contact-item-text p { margin: 0; color: var(--gray); font-size: 14px; }
+        .form-card { background: var(--light); padding: 48px; border-radius: 16px; border: 1px solid #e1e4e8; }
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: var(--primary); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid #d1d5da; border-radius: 6px; font-size: 16px; transition: all 0.3s; background: white; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(35, 134, 54, 0.1); }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-group .error { border-color: #f85149; }
+        .error-message { color: #f85149; font-size: 13px; margin-top: 6px; display: none; }
+        .btn-submit { width: 100%; background: var(--secondary); color: white; padding: 16px; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .btn-submit:hover { background: var(--accent); }
-        .success-message { background: var(--success); color: white; padding: 16px; border-radius: 8px; text-align: center; display: none; }
+        .success-message { background: var(--success); color: white; padding: 16px; border-radius: 6px; text-align: center; display: none; }
         
         /* Footer */
         footer { background: var(--primary); color: white; padding: 60px 0 30px; }
         .footer-content { display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .footer-logo { font-size: 24px; font-weight: 700; }
+        .footer-logo span { color: var(--secondary); }
         .footer-links { display: flex; gap: 32px; }
-        .footer-links a { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; font-size: 14px; }
         .footer-links a:hover { color: white; }
-        .footer-bottom { text-align: center; padding-top: 30px; color: #64748b; font-size: 14px; }
+        .footer-bottom { text-align: center; padding-top: 30px; color: rgba(255,255,255,0.4); font-size: 14px; }
+        
+        /* Mobile Menu */
+        .mobile-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--primary); }
         
         /* Responsive */
         @media (max-width: 968px) {
-            .hero-content, .contact-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 40px; }
-            .steps { grid-template-columns: repeat(2, 1fr); }
-            .feature-grid { grid-template-columns: 1fr; }
-            .hero-visual { order: -1; }
+            .hero-content { grid-template-columns: 1fr; gap: 60px; }
+            .hero h1 { font-size: 42px; }
+            .hero-stats { order: -1; }
+            .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+            .feature-grid { grid-template-columns: 1fr 1fr; }
+            .pain-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .steps::before { display: none; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
         }
         @media (max-width: 640px) {
             .hero h1 { font-size: 32px; }
-            .steps { grid-template-columns: 1fr; }
             .hero-cta { flex-direction: column; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: 1fr; }
+            .stat { border-right: none !important; border-bottom: 1px solid #e1e4e8; }
+            .stat:last-child { border-bottom: none; }
+            .stat-row .stat:nth-child(n+3) { border-top: none; padding-top: 20px; }
             .footer-content { flex-direction: column; gap: 24px; text-align: center; }
-            .stat-grid { grid-template-columns: 1fr; }
+            .trusted-logos { gap: 32px; }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="container">
-            <a href="/" class="logo">Acuoi</a>
-            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+            <a href="/" class="logo">Acu<span>oi</span></a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact" class="nav-cta">Get Started</a>
+            </div>
+            <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
@@ -128,32 +181,119 @@
         <div class="container">
             <div class="hero-content">
                 <div>
-                    <h1>Unlock Access to Private Startup Equity</h1>
-                    <p>The trusted marketplace for buying and selling shares in private companies. Diversify your portfolio with pre-IPO opportunities.</p>
+                    <div class="hero-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        Fully Compliant Payment Processing
+                    </div>
+                    <h1>Payment Rails <span>Built for Cannabis</span></h1>
+                    <p>Modern, compliant payment processing for dispensaries, cultivators, and delivery services. Faster payouts, easier integration, and full regulatory compliance.</p>
                     <div class="hero-cta">
-                        <a href="#waitlist" class="btn-primary">Get Early Access</a>
-                        <a href="#how-it-works" class="btn-secondary">How It Works</a>
+                        <a href="#contact" class="btn-primary"><i class="fas fa-arrow-right"></i> Start Processing</a>
+                        <a href="#how-it-works" class="btn-secondary">Learn More</a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="stat-grid">
+                <div class="hero-stats">
+                    <div class="stat-row">
                         <div class="stat">
-                            <div class="stat-value">$2.4B+</div>
-                            <div class="stat-label">Transaction Volume</div>
+                            <div class="stat-value">24h</div>
+                            <div class="stat-label">Payout Speed</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-value">500+</div>
-                            <div class="stat-label">Private Companies</div>
+                            <div class="stat-value">99.9%</div>
+                            <div class="stat-label">Uptime</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-value">12K+</div>
-                            <div class="stat-label">Verified Investors</div>
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">States Covered</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-value">98%</div>
-                            <div class="stat-label">Success Rate</div>
+                            <div class="stat-value">$2B+</div>
+                            <div class="stat-label">Processed</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trusted">
+        <div class="container">
+            <div class="trusted-text">Trusted by cannabis businesses nationwide</div>
+            <div class="trusted-logos">
+                <span class="trusted-item">Dispensaries</span>
+                <span class="trusted-item">Cultivators</span>
+                <span class="trusted-item">Delivery Services</span>
+                <span class="trusted-item">Multi-State Operators</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain-points">
+        <div class="container">
+            <div class="section-title">
+                <h2>Legacy Processors Are Broken</h2>
+                <p>The cannabis industry deserves better than outdated payment infrastructure</p>
+            </div>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Slow Payouts</h3>
+                    <p>Waiting 5-7 days for funds while legacy processors drag their feet on cannabis transactions.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-plug"></i>
+                    <h3>Unreliable Service</h3>
+                    <p>Constant downtime, frozen accounts, and surprise terminations leaving you scrambling.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Compliance Nightmares</h3>
+                    <p>Juggling fragmented systems that weren't built for cannabis regulatory requirements.</p>
+                </div>
+            </div>
+            <div class="solution-banner">
+                <h3>There's a Better Way</h3>
+                <p>Purpose-built payment infrastructure designed specifically for cannabis businesses</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Built for Cannabis. Built to Scale.</h2>
+                <p>Everything you need to accept payments and grow your business</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Fast Payouts</h3>
+                    <p>Get your money in 24 hours, not 5-7 days. Predictable cash flow so you can focus on growing your business.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Recurring Billing</h3>
+                    <p>Set up subscriptions and recurring payments for delivery memberships, loyalty programs, and wholesale accounts.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-code"></i></div>
+                    <h3>Easy API Integration</h3>
+                    <p>Modern REST API with SDKs for all major platforms. Go live in days, not months. Comprehensive documentation included.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Full Compliance</h3>
+                    <p>Built-in compliance tools for state-by-state regulations. Automated reporting, audit trails, and regulatory updates.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Dashboard with live transaction data, trends, and insights. Export reports for accounting and compliance.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Dedicated Support</h3>
+                    <p>Cannabis industry specialists available when you need them. No more explaining your business to confused support reps.</p>
                 </div>
             </div>
         </div>
@@ -162,84 +302,39 @@
     <section class="how-it-works" id="how-it-works">
         <div class="container">
             <div class="section-title">
-                <h2>How It Works</h2>
-                <p>Start trading private shares in four simple steps</p>
+                <h2>Go Live in Days, Not Months</h2>
+                <p>Simple onboarding designed for cannabis businesses</p>
             </div>
             <div class="steps">
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-user-check"></i></div>
-                    <div class="step-number">Step 1</div>
-                    <h3>Get Verified</h3>
-                    <p>Complete our accreditation process to access the marketplace</p>
+                    <div class="step-number">1</div>
+                    <h3>Apply Online</h3>
+                    <p>Quick application with cannabis-specific questions. No surprises later.</p>
                 </div>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-search"></i></div>
-                    <div class="step-number">Step 2</div>
-                    <h3>Browse Listings</h3>
-                    <p>Explore available shares from hundreds of private companies</p>
+                    <div class="step-number">2</div>
+                    <h3>Get Approved</h3>
+                    <p>Fast underwriting by a team that understands cannabis licensing.</p>
                 </div>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-handshake"></i></div>
-                    <div class="step-number">Step 3</div>
-                    <h3>Make an Offer</h3>
-                    <p>Submit your bid or ask, and negotiate with counterparties</p>
+                    <div class="step-number">3</div>
+                    <h3>Integrate</h3>
+                    <p>Connect via API or use our pre-built POS integrations.</p>
                 </div>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="step-number">Step 4</div>
-                    <h3>Close Securely</h3>
-                    <p>We handle compliance, escrow, and transfer documentation</p>
+                    <div class="step-number">4</div>
+                    <h3>Start Processing</h3>
+                    <p>Accept payments and receive fast, reliable payouts.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="features">
+    <section class="cta-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Why Choose Acuoi</h2>
-                <p>Built for serious investors who demand more</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Verified Transactions</h3>
-                    <p>Every listing is vetted. Every seller is verified. Trade with confidence knowing all parties are authenticated.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Instant Liquidity</h3>
-                    <p>No more waiting for an IPO. Access your capital when you need it through our active secondary market.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-lock"></i>
-                    <h3>Secure Escrow</h3>
-                    <p>Funds are held safely until all conditions are met. Our escrow system protects both buyers and sellers.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Price Discovery</h3>
-                    <p>Real-time market data and historical pricing help you make informed investment decisions.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-file-contract"></i>
-                    <h3>Compliance Handled</h3>
-                    <p>We manage ROFR, company approvals, and all legal documentation so you can focus on investing.</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-users"></i>
-                    <h3>Expert Support</h3>
-                    <p>Our team of specialists guides you through every transaction from start to finish.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section" id="waitlist">
-        <div class="container">
-            <h2>Join the Future of Private Markets</h2>
-            <p>Be among the first to access exclusive pre-IPO investment opportunities</p>
-            <a href="#contact" class="btn-primary" style="background: white; color: var(--secondary);">Request Early Access</a>
+            <h2>Ready to Upgrade Your Payments?</h2>
+            <p>Join hundreds of cannabis businesses already processing with Acuoi</p>
+            <a href="#contact" class="btn-primary" style="background: white; color: var(--primary);">Get Started Today</a>
         </div>
     </section>
 
@@ -247,20 +342,27 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Get in Touch</h2>
-                    <p>Ready to start trading private shares? Have questions about our platform? We're here to help.</p>
+                    <h2>Let's Talk Payments</h2>
+                    <p>Tell us about your business and we'll show you how Acuoi can help you process payments more efficiently.</p>
                     <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Response Time</strong>
-                            <p style="margin:0; color: var(--gray);">Within 24 hours</p>
+                        <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-item-text">
+                            <strong>Fast Response</strong>
+                            <p>We respond within 24 hours</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-globe"></i>
-                        <div>
-                            <strong>Global Access</strong>
-                            <p style="margin:0; color: var(--gray);">Serving investors worldwide</p>
+                        <div class="contact-item-icon"><i class="fas fa-user-tie"></i></div>
+                        <div class="contact-item-text">
+                            <strong>Industry Experts</strong>
+                            <p>Speak with cannabis payment specialists</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-lock"></i></div>
+                        <div class="contact-item-text">
+                            <strong>No Commitment</strong>
+                            <p>Free consultation, no pressure</p>
                         </div>
                     </div>
                 </div>
@@ -268,21 +370,33 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" placeholder="John Smith" required>
                             <div class="error-message" id="nameError">Please enter your name</div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@company.com" required>
                             <div class="error-message" id="emailError">Please enter a valid email</div>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <label for="business">Business Type</label>
+                            <select id="business" name="business" required>
+                                <option value="">Select your business type</option>
+                                <option value="dispensary">Dispensary</option>
+                                <option value="cultivator">Cultivator</option>
+                                <option value="delivery">Delivery Service</option>
+                                <option value="mso">Multi-State Operator</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="businessError">Please select a business type</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell us about your needs</label>
+                            <textarea id="message" name="message" placeholder="Monthly volume, current processor challenges, timeline..." required></textarea>
                             <div class="error-message" id="messageError">Please enter your message</div>
                         </div>
-                        <button type="submit" class="btn-submit">Send Message</button>
-                        <div class="success-message" id="successMessage">Thank you! We'll be in touch soon.</div>
+                        <button type="submit" class="btn-submit">Request Consultation</button>
+                        <div class="success-message" id="successMessage">Thank you! A payments specialist will contact you within 24 hours.</div>
                     </form>
                 </div>
             </div>
@@ -292,7 +406,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">Acuoi</div>
+                <div class="footer-logo">Acu<span>oi</span></div>
                 <div class="footer-links">
                     <a href="/privacy-policy">Privacy Policy</a>
                     <a href="/terms-of-use">Terms of Use</a>
@@ -311,20 +425,18 @@
             
             const name = document.getElementById('name');
             const email = document.getElementById('email');
+            const business = document.getElementById('business');
             const message = document.getElementById('message');
             
-            // Reset errors
             document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
+            document.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('error'));
             
-            // Validate name
             if (name.value.trim() === '') {
                 name.classList.add('error');
                 document.getElementById('nameError').style.display = 'block';
                 isValid = false;
             }
             
-            // Validate email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email.value)) {
                 email.classList.add('error');
@@ -332,7 +444,12 @@
                 isValid = false;
             }
             
-            // Validate message
+            if (business.value === '') {
+                business.classList.add('error');
+                document.getElementById('businessError').style.display = 'block';
+                isValid = false;
+            }
+            
             if (message.value.trim() === '') {
                 message.classList.add('error');
                 document.getElementById('messageError').style.display = 'block';
@@ -348,7 +465,6 @@
             }
         });
         
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
