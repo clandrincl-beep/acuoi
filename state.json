@@ -1,0 +1,11 @@
+{
+  "domain": "acuoi",
+  "pitch": "Payment processing for cannabis industry — compliant, reliable, fast. Better UX, faster payouts, easier integration. Recurring billing support.",
+  "createdAt": "2026-02-19T15:35:00Z",
+  "steps": {
+    "landing-page": {"status": "completed", "url": "https://acuoi.com"},
+    "find-prospects": {"status": "pending"},
+    "find-emails": {"status": "pending"},
+    "generate-copy": {"status": "pending"}
+  }
+}

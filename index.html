@@ -46,14 +46,30 @@
         .btn-secondary { background: white; color: var(--primary); padding: 16px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; border: 1px solid #d1d5da; transition: all 0.3s; }
         .btn-secondary:hover { border-color: var(--primary); }
         
-        .hero-stats { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #e1e4e8; }
-        .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-        .stat { text-align: center; padding: 20px; }
-        .stat:not(:last-child) { border-right: 1px solid #e1e4e8; }
-        .stat-row .stat:nth-child(odd):not(:first-child) { border-right: none; }
-        .stat-row .stat:nth-child(n+3) { border-top: 1px solid #e1e4e8; padding-top: 32px; }
-        .stat-value { font-size: 40px; font-weight: 700; color: var(--secondary); }
-        .stat-label { font-size: 14px; color: var(--gray); margin-top: 4px; font-weight: 500; }
+        .hero-visual { background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); border-radius: 16px; padding: 32px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #30363d; overflow: hidden; position: relative; }
+        .dashboard-mock { position: relative; }
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #30363d; }
+        .dashboard-title { color: #f6f8fa; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .dashboard-title i { color: var(--secondary); }
+        .dashboard-status { display: flex; align-items: center; gap: 6px; color: var(--secondary); font-size: 12px; font-weight: 500; }
+        .status-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .dashboard-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+        .dash-card { background: rgba(255,255,255,0.03); border: 1px solid #30363d; border-radius: 10px; padding: 16px; }
+        .dash-card-label { color: #6e7681; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .dash-card-value { color: #f6f8fa; font-size: 24px; font-weight: 700; }
+        .dash-card-value.green { color: var(--secondary); }
+        .dash-card-sub { color: #6e7681; font-size: 11px; margin-top: 4px; }
+        .transaction-list { background: rgba(255,255,255,0.02); border-radius: 10px; padding: 16px; }
+        .transaction-header { color: #6e7681; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .transaction { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #21262d; }
+        .transaction:last-child { border-bottom: none; }
+        .transaction-info { display: flex; align-items: center; gap: 10px; }
+        .transaction-icon { width: 32px; height: 32px; background: rgba(35, 134, 54, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--secondary); font-size: 12px; }
+        .transaction-name { color: #f6f8fa; font-size: 13px; font-weight: 500; }
+        .transaction-time { color: #6e7681; font-size: 11px; }
+        .transaction-amount { color: var(--secondary); font-size: 14px; font-weight: 600; }
+        .glow-orb { position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(35, 134, 54, 0.15) 0%, transparent 70%); border-radius: 50%; top: -50px; right: -50px; pointer-events: none; }
         
         /* Trusted By */
         .trusted { padding: 60px 0; background: white; border-bottom: 1px solid #e1e4e8; }
@@ -140,7 +156,7 @@
         @media (max-width: 968px) {
             .hero-content { grid-template-columns: 1fr; gap: 60px; }
             .hero h1 { font-size: 42px; }
-            .hero-stats { order: -1; }
+            .hero-visual { order: -1; }
             .contact-grid { grid-template-columns: 1fr; gap: 60px; }
             .feature-grid { grid-template-columns: 1fr 1fr; }
             .pain-grid { grid-template-columns: 1fr; }
@@ -154,10 +170,8 @@
             .hero-cta { flex-direction: column; }
             .feature-grid { grid-template-columns: 1fr; }
             .steps { grid-template-columns: 1fr; }
-            .stat-row { grid-template-columns: 1fr; }
-            .stat { border-right: none !important; border-bottom: 1px solid #e1e4e8; }
-            .stat:last-child { border-bottom: none; }
-            .stat-row .stat:nth-child(n+3) { border-top: none; padding-top: 20px; }
+            .dashboard-cards { grid-template-columns: 1fr; }
+            .dash-card-value { font-size: 20px; }
             .footer-content { flex-direction: column; gap: 24px; text-align: center; }
             .trusted-logos { gap: 32px; }
         }
@@ -192,23 +206,57 @@
                         <a href="#how-it-works" class="btn-secondary">Learn More</a>
                     </div>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-row">
-                        <div class="stat">
-                            <div class="stat-value">24h</div>
-                            <div class="stat-label">Payout Speed</div>
+                <div class="hero-visual">
+                    <div class="glow-orb"></div>
+                    <div class="dashboard-mock">
+                        <div class="dashboard-header">
+                            <div class="dashboard-title"><i class="fas fa-leaf"></i> Acuoi Dashboard</div>
+                            <div class="dashboard-status"><span class="status-dot"></span> Live</div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-value">99.9%</div>
-                            <div class="stat-label">Uptime</div>
+                        <div class="dashboard-cards">
+                            <div class="dash-card">
+                                <div class="dash-card-label">Today's Volume</div>
+                                <div class="dash-card-value">$47,892</div>
+                                <div class="dash-card-sub">+12.4% vs yesterday</div>
+                            </div>
+                            <div class="dash-card">
+                                <div class="dash-card-label">Next Payout</div>
+                                <div class="dash-card-value green">$38,241</div>
+                                <div class="dash-card-sub">Tomorrow 6:00 AM</div>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-value">50+</div>
-                            <div class="stat-label">States Covered</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">$2B+</div>
-                            <div class="stat-label">Processed</div>
+                        <div class="transaction-list">
+                            <div class="transaction-header">Recent Transactions</div>
+                            <div class="transaction">
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fas fa-store"></i></div>
+                                    <div>
+                                        <div class="transaction-name">In-store Purchase</div>
+                                        <div class="transaction-time">2 min ago</div>
+                                    </div>
+                                </div>
+                                <div class="transaction-amount">+$156.00</div>
+                            </div>
+                            <div class="transaction">
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fas fa-truck"></i></div>
+                                    <div>
+                                        <div class="transaction-name">Delivery Order</div>
+                                        <div class="transaction-time">8 min ago</div>
+                                    </div>
+                                </div>
+                                <div class="transaction-amount">+$89.50</div>
+                            </div>
+                            <div class="transaction">
+                                <div class="transaction-info">
+                                    <div class="transaction-icon"><i class="fas fa-sync-alt"></i></div>
+                                    <div>
+                                        <div class="transaction-name">Subscription Renewal</div>
+                                        <div class="transaction-time">23 min ago</div>
+                                    </div>
+                                </div>
+                                <div class="transaction-amount">+$299.00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
