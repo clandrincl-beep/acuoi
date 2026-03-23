@@ -1,11 +1,58 @@
 {
   "domain": "acuoi",
-  "pitch": "Payment processing for cannabis industry — compliant, reliable, fast. Better UX, faster payouts, easier integration. Recurring billing support.",
-  "createdAt": "2026-02-19T15:35:00Z",
+  "pitch": "Payment processing for cannabis industry \u2014 compliant, reliable, fast. Better UX, faster payouts, easier integration. Recurring billing support.",
+  "createdAt": "2026-02-26T15:38:00Z",
+  "icp": {
+    "org_filters": {
+      "organization_locations": [
+        "United States"
+      ],
+      "organization_num_employees_ranges": [
+        "11,20",
+        "21,50",
+        "51,100",
+        "101,200"
+      ],
+      "q_organization_keyword_tags": [
+        "cannabis",
+        "dispensary",
+        "marijuana",
+        "hemp",
+        "CBD"
+      ]
+    },
+    "people_filters": {
+      "person_titles": [
+        "owner",
+        "founder",
+        "CEO",
+        "CFO",
+        "finance",
+        "controller",
+        "operations",
+        "general manager"
+      ],
+      "person_seniorities": [
+        "owner",
+        "founder",
+        "c_suite",
+        "director"
+      ]
+    }
+  },
   "steps": {
-    "landing-page": {"status": "completed", "url": "https://acuoi.com"},
-    "find-prospects": {"status": "pending"},
-    "find-emails": {"status": "pending"},
-    "generate-copy": {"status": "pending"}
+    "landing-page": {
+      "status": "completed",
+      "url": "https://acuoi.com"
+    },
+    "find-prospects": {
+      "status": "completed",
+      "total_prospects": 244,
+      "with_email": 244,
+      "note": "Merged 199 fresh enriched + 45 from archive"
+    },
+    "generate-copy": {
+      "status": "pending"
+    }
   }
 }
